@@ -1,0 +1,35 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Movie Recommendation System</title>  
+    <link rel="stylesheet" href="styles.css">  
+</head>  
+<body>  
+    <header>  
+        <h1>Movie Recommendations</h1>  
+        <nav>  
+            <a href="#">Home</a>  
+            <a href="#">Add Movie</a>  
+            <a href="#">Recommendations</a>  
+        </nav>  
+    </header>  
+    <div class="container">  
+        <div class="form-container">  
+            <h2>Add a New Movie</h2>  
+            <input type="text" id="title" placeholder="Movie Title" required>  
+            <input type="text" id="genre" placeholder="Genre" required>  
+            <input type="number" step="0.1" id="rating" placeholder="Rating (0-10)" min="0" max="10" required>  
+            <button onclick="addMovie()">Add Movie</button>  
+            <div id="response-message"></div> <!-- For displaying messages or errors -->  
+        </div>  
+        <h2>Movie List</h2>  
+        <div id="movies" class="movie-list"></div>  
+    </div>  
+    <footer>  
+        <p>&copy; 2024 Movie Recommendation System</p>  
+    </footer>  
+    <script src="app.js"></script>  
+</body>  
+</html>
