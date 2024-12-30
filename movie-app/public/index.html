@@ -21,7 +21,7 @@
             <input type="text" id="title" placeholder="Movie Title" required>  
             <input type="text" id="genre" placeholder="Genre" required>  
             <input type="number" step="0.1" id="rating" placeholder="Rating (0-10)" min="0" max="10" required>  
-            <button onclick="addMovie()">Add Movie</button>  
+            <button id="addMovieBtn">Add Movie</button>  
             <div id="response-message"></div> <!-- For displaying messages or errors -->  
         </div>  
         <h2>Movie List</h2>  
@@ -31,5 +31,45 @@
         <p>&copy; 2024 Movie Recommendation System</p>  
     </footer>  
     <script src="app.js"></script>  
+    <script>  
+        // JavaScript to handle adding movies to the list  
+        const movies = []; // Array to keep track of added movies  
+
+        function updateMovieList() {  
+            const movieListContainer = document.getElementById('movies');  
+            movieListContainer.innerHTML = ''; // Clear existing movies  
+            movies.forEach((movie, index) => {  
+                const movieDiv = document.createElement('div');  
+                movieDiv.className = 'movie-item';  
+                movieDiv.innerHTML = `<strong>${movie.title}</strong> (${movie.genre}) - Rating: ${movie.rating}`;  
+                movieListContainer.appendChild(movieDiv);  
+            });  
+        }  
+
+        function addMovie() {  
+            const title = document.getElementById('title').value.trim();  
+            const genre = document.getElementById('genre').value.trim();  
+            const rating = parseFloat(document.getElementById('rating').value);  
+
+            // Validate inputs  
+            if (title === '' || genre === '' || isNaN(rating) || rating < 0 || rating > 10) {  
+                document.getElementById('response-message').innerText = 'Please enter valid movie details.';  
+                return;  
+            }  
+
+            // Add movie to the array  
+            movies.push({ title, genre, rating });  
+            document.getElementById('response-message').innerText = `${title} has been added!`;  
+            document.getElementById('title').value = ''; // Clear inputs  
+            document.getElementById('genre').value = '';  
+            document.getElementById('rating').value = '';  
+
+            // Update movie list  
+            updateMovieList();  
+        }  
+
+        // Attach event listener to the button  
+        document.getElementById('addMovieBtn').addEventListener('click', addMovie);  
+    </script>  
 </body>  
 </html>
